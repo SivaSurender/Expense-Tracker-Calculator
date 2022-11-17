@@ -1,16 +1,13 @@
 import "./ExpenseItem.css";
-const ExpenseItem = function () {
-  const expenseDate = new Date().toISOString();
-
-  const expenseDescription = "Soda";
-  const expensePrice = 30;
+const ExpenseItem = function ({ id, title, amount, date }) {
+  console.log(id, title, amount, date);
 
   return (
     <div className="expense-item ">
-      <div>{expenseDate}</div>
+      <div>{date.toISOString()}</div>
       <div className="expense-item__description">
-        <h2>{expenseDescription}</h2>
-        <div className="expense-item__price">₹{expensePrice}</div>
+        <h2>{title}</h2>
+        <div className="expense-item__price">₹{amount}</div>
       </div>
     </div>
   );
