@@ -7,7 +7,7 @@ const ExpenseItem = function ({ id, title, amount, date }) {
   const [Updatedtitle, setTitle] = useState(title);
 
   const clickHandler = function () {
-    setTitle("Updated");
+    setTitle(() => "Updated");
 
     // updated value won't appearing right away in next console log line, as it will be scheduled to nbe updated in react, thus won't be seen in the next console log line
     console.log(Updatedtitle);
