@@ -1,5 +1,6 @@
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpenses/NewExpense";
+import React from "react";
 function App() {
   const expenses = [
     {
@@ -22,10 +23,16 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
+
+  const newExpenseDataHandler = (expense) => {
+    console.log(expense, "App.jsx");
+  };
   return (
     <div>
-      <NewExpense />
-      <Expenses item={expenses} />
+      <React.StrictMode>
+        <NewExpense onGetNewExpense={newExpenseDataHandler} />
+        <Expenses item={expenses} />
+      </React.StrictMode>
     </div>
   );
 }

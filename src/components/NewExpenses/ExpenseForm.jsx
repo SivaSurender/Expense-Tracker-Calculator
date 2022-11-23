@@ -1,6 +1,6 @@
 import "./ExpenseForm.css";
 import { useState } from "react";
-const ExpenseForm = function () {
+const ExpenseForm = function (props) {
   // storing the initial value for both date and amount as string ("")since the values which are read from event.target.value will always be read as string
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setenteredAmount] = useState("");
@@ -30,13 +30,15 @@ const ExpenseForm = function () {
       date: new Date(enteredDate),
     };
 
-    console.log(expenseData);
-
     // clearing the form after submit
 
     setEnteredTitle("");
     setenteredAmount("");
     setenteredDate("");
+
+    // sendung the expenseData from here to its parent component and pass the final expense dat from here
+
+    props.onSaveExpense(expenseData);
   };
 
   return (
