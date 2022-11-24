@@ -9,12 +9,18 @@ const Expenses = function ({ item }) {
   const onFilterChange = (currentSelectedYear) => {
     setSelectedYear(currentSelectedYear);
   };
+
+  // to render filtered items
+
+  const filteredList = item.filter((it) => {
+    return it.date.getFullYear().toString() === selectedYear;
+  });
   return (
     <div>
       <Card className="expenses">
         <ExpensesFilter defaultYear={selectedYear} onFilter={onFilterChange} />
-        {/* Rendering arry of objects dynamically with map */}
-        {item.map((eachItem) => (
+        {/* Rendering array of objects dynamically with map */}
+        {filteredList.map((eachItem) => (
           <ExpenseItem
             key={eachItem.id}
             title={eachItem.title}
