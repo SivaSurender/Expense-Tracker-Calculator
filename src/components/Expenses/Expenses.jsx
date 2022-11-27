@@ -3,6 +3,7 @@ import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
 import ExpensesFilter from "./ExpensesFilter";
 import { useState } from "react";
+import ExpensesList from "./ExpensesList";
 
 const Expenses = function ({ item }) {
   const [selectedYear, setSelectedYear] = useState("2019");
@@ -10,7 +11,7 @@ const Expenses = function ({ item }) {
     setSelectedYear(currentSelectedYear);
   };
 
-  // to render filtered items
+  // logic to render filtered items
 
   const filteredList = item.filter((it) => {
     return it.date.getFullYear().toString() === selectedYear;
@@ -19,21 +20,7 @@ const Expenses = function ({ item }) {
     <div>
       <Card className="expenses">
         <ExpensesFilter defaultYear={selectedYear} onFilter={onFilterChange} />
-        {/* Rendering array of objects dynamically with map */}
-
-        {/*Adding conditional rendering to displaay a message if there's no items selected in the list */}
-        {filteredList.length === 0 ? (
-          <p>No Expenses found for the selected Year</p>
-        ) : (
-          filteredList.map((eachItem) => (
-            <ExpenseItem
-              key={eachItem.id}
-              title={eachItem.title}
-              amount={eachItem.amount}
-              date={eachItem.date}
-            />
-          ))
-        )}
+        <ExpensesList filteredList={filteredList} />
       </Card>
     </div>
   );
