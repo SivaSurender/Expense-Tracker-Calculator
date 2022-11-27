@@ -20,14 +20,20 @@ const Expenses = function ({ item }) {
       <Card className="expenses">
         <ExpensesFilter defaultYear={selectedYear} onFilter={onFilterChange} />
         {/* Rendering array of objects dynamically with map */}
-        {filteredList.map((eachItem) => (
-          <ExpenseItem
-            key={eachItem.id}
-            title={eachItem.title}
-            amount={eachItem.amount}
-            date={eachItem.date}
-          />
-        ))}
+
+        {/*Adding conditional rendering to displaay a message if there's no items selected in the list */}
+        {filteredList.length === 0 ? (
+          <p>No Expenses found for the selected Year</p>
+        ) : (
+          filteredList.map((eachItem) => (
+            <ExpenseItem
+              key={eachItem.id}
+              title={eachItem.title}
+              amount={eachItem.amount}
+              date={eachItem.date}
+            />
+          ))
+        )}
       </Card>
     </div>
   );
